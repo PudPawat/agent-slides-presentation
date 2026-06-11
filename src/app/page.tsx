@@ -79,6 +79,9 @@ export default function Home() {
 
   const handlePwKey = (e: React.KeyboardEvent) => { if (e.key === 'Enter') handleUnlock() }
 
+  const [mobileTab, setMobileTab] = useState<'chat' | 'slides'>('chat')
+  const [slidesDot, setSlidesDot] = useState(false)
+
   const [messages, setMessages] = useState<Message[]>([{
     role: 'bot',
     text: "Hi! I'm the LINEGO Dispatch QA Bot. Ask me anything about the adaptive two-step dispatch framework — passenger grouping, driver assignment, operating modes, results, or conclusions. Type or use the mic button.",
@@ -157,6 +160,7 @@ export default function Home() {
       const data = await res.json()
       if (data.error) throw new Error(data.error)
       setRelevantSlides(data.slides || [])
+      if (data.slides?.length) setSlidesDot(true)
       setMessages(prev => [...prev, { role: 'bot', text: data.answer, slides: data.slides, time: now() }])
       speak(data.answer)
     } catch (e) {
@@ -222,7 +226,7 @@ export default function Home() {
 
       <div className={styles.main}>
         {/* Slide panel */}
-        <aside className={styles.slidePanel}>
+        <aside className={`${styles.slidePanel} ${mobileTab === 'slides' ? styles.mobileVisible : ''}`}>
           <div className={styles.slidePanelHeader}>
             <h2>Relevant Slides</h2>
             {relevantSlides.length > 0 && (
@@ -259,7 +263,7 @@ export default function Home() {
         </aside>
 
         {/* Chat panel */}
-        <div className={styles.chatPanel}>
+        <div className={`${styles.chatPanel} ${mobileTab === 'chat' ? styles.mobileVisible : ''}`}>
           <div className={styles.messages}>
             {messages.map((m, i) => (
               <div key={i} className={`${styles.msg} ${m.role === 'user' ? styles.userMsg : styles.botMsg}`}>
@@ -313,6 +317,25 @@ export default function Home() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile tab bar */}
+      <div className={styles.tabBar}>
+        <button
+          className={`${styles.tabBtn} ${mobileTab === 'chat' ? styles.tabActive : ''}`}
+          onClick={() => setMobileTab('chat')}
+        >
+          <span className={styles.tabIcon}>💬</span>
+          Chat
+        </button>
+        <button
+          className={`${styles.tabBtn} ${mobileTab === 'slides' ? styles.tabActive : ''}`}
+          onClick={() => { setMobileTab('slides'); setSlidesDot(false) }}
+        >
+          <span className={styles.tabIcon}>🖼️</span>
+          Slides
+          {slidesDot && mobileTab !== 'slides' && <span className={styles.tabDot} />}
+        </button>
       </div>
 
       {/* Lightbox */}
