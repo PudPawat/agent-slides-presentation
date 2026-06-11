@@ -31,16 +31,16 @@ interface Message {
 }
 
 const SUGGESTIONS = [
+  'What is LINEGO and what problem does this solve?',
   "Why can't you just use nearest-car dispatch?",
+  'Why carpool? What are the three benefits?',
   'What is the passenger grouping formula?',
   'What does the β parameter control?',
-  'How is driver fairness measured?',
-  'Which mode has the best results?',
+  'What is the driver assignment formula?',
   'What is the Bottom-20 metric?',
-  'How does carpool improve efficiency?',
-  'What are the guardrails?',
+  'Which mode has the best results?',
   'What are the six operating modes?',
-  'How would this deploy in production?',
+  'What are the limitations and future work?',
 ]
 
 function now() { return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
@@ -236,7 +236,7 @@ export default function Home() {
                 <p>Ask a question and I&apos;ll pull the relevant slides.</p>
                 <div className={styles.slideHints}>
                   <span className={styles.hintLabel}>Slides cover:</span>
-                  {['Motivation','Why Carpool','Grouping Formula','Assignment Formula','6 Operating Modes','Results Table','Conclusion'].map(t => (
+                  {['Motivation','Why Carpool','Grouping Formula','Assignment Formula','6 Modes','Results','Conclusion','Future Work'].map(t => (
                     <span key={t} className={styles.hintChip}>{t}</span>
                   ))}
                 </div>
