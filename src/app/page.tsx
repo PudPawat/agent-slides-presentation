@@ -3,8 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import styles from './page.module.css'
 
-const PASSWORD = 'NTUAI2026'
-
 function isInFreeWindow(): boolean {
   const now = new Date()
   const utc = now.getTime() + now.getTimezoneOffset() * 60000
@@ -58,12 +56,22 @@ export default function Home() {
     }
   }, [])
 
-  const handleUnlock = () => {
-    if (pwInput.trim() === PASSWORD) {
-      sessionStorage.setItem('linego_unlocked', '1')
-      setUnlocked(true)
-      setPwError(false)
-    } else {
+  const handleUnlock = async () => {
+    try {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pwInput.trim() }),
+      })
+      if (res.ok) {
+        sessionStorage.setItem('linego_unlocked', '1')
+        setUnlocked(true)
+        setPwError(false)
+      } else {
+        setPwError(true)
+        setPwInput('')
+      }
+    } catch {
       setPwError(true)
       setPwInput('')
     }
