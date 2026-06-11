@@ -31,15 +31,15 @@ interface Message {
 }
 
 const SUGGESTIONS = [
-  'What is LINEGO and what problem does this solve?',
-  "Why can't you just use nearest-car dispatch?",
-  'Why carpool? What are the three benefits?',
+  'What is our contribution?',
+  'Which mode should LINEGO deploy?',
+  'Why is it better than nearest-driver policy?',
+  'How does it help the LINEGO industry?',
+  'What is the motivation? How does carpool fit in?',
   'What is the passenger grouping formula?',
   'What does the β parameter control?',
-  'What is the driver assignment formula?',
   'What is the Bottom-20 metric?',
   'Which mode has the best results?',
-  'What are the six operating modes?',
   'What are the limitations and future work?',
 ]
 

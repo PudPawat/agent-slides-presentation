@@ -18,15 +18,15 @@ export const SLIDES: Slide[] = [
       "introduction", "project", "solve", "adaptive", "two-step"
     ],
     summary: `Q1: What is LINEGO and what problem does this project solve?
-A1: LINEGO is a ride-hailing platform. This project solves the problem of inefficient and unfair taxi dispatch — existing nearest-car logic wastes vehicles, fails to rebalance future supply, and ignores driver income fairness.
+A1: LINEGO is a ride-hailing platform. This project solves the problem of inefficient and unfair taxi dispatch — existing nearest-car logic wastes vehicles, fails to rebalance future supply, and ignores driver income fairness. Carpool is a key part of the solution: grouping compatible riders reduces required vehicles, releases supply capacity, and unlocks supply-readiness and driver-fairness optimization that solo dispatch cannot achieve.
 
 Q2: What is the name of the dispatch framework proposed?
-A2: The framework is called an adaptive two-step dispatch system for LINEGO. It separates dispatch into two steps: passenger grouping and driver assignment, each with tunable objective weights.
+A2: The framework is called an adaptive two-step dispatch system for LINEGO. It separates dispatch into two steps: passenger grouping (which uses carpool to group compatible riders) and driver assignment, each with tunable objective weights.
 
 Q3: Who are the authors of this project?
 A3: Pawat Chunhachatrachai, Chen Chun-Jung, Wubetu Barud Demilie, and Yohannes Agegnehu Bezabh.
 
-Additional context: Trip details are hidden from drivers before acceptance, so dispatch must protect system-level fairness. Nearest-car logic is not enough — decisions should also prepare future supply and balance driver income fairness. Tunable modes keep the pipeline adaptable as marketplace behavior changes.`
+Motivation context: Trip details are hidden from drivers before acceptance, so dispatch must protect system-level fairness. Nearest-car logic is not enough. Carpool is central to the motivation — it reduces required vehicles, offers riders a lower fare option, and gives the system extra levers for supply-readiness and driver-fairness optimization. Tunable modes (Balanced, Supply, Fairness) keep the pipeline adaptable as marketplace behavior changes.`
   },
   {
     id: 2,
