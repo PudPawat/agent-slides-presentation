@@ -89,7 +89,7 @@ export default function Home() {
   }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [ttsOn, setTtsOn] = useState(true)
+  const [ttsOn, setTtsOn] = useState(false)
   const [speaking, setSpeaking] = useState(false)
   const [recording, setRecording] = useState(false)
   const [lightbox, setLightbox] = useState<string | null>(null)
